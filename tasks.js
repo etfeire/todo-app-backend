@@ -6,7 +6,7 @@ app.use(cors());
 
 app.get('/tasks', function (request, response) {
 
-  const username = request.query.username;
+  // const username = request.query.username;
 
   const todoList = request.query.tasks;
 
@@ -16,7 +16,7 @@ app.get('/tasks', function (request, response) {
   // const someJson = {
   //   tasks: "Hello " + username + ", here are your tasks: " + tasks;
   // }
-  const someJson = [tasks];
+  const someJson = [todoList];
   response.json(someJson);
 })
 
