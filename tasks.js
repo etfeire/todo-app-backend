@@ -9,7 +9,7 @@ app.get('/tasks', function (request, response) {
   const username = request.query.username;
 
   const someJson = {
-    message: "Hello " + username + ", how are you?"
+    message: "Hello " + username + ", how are you? You have the following tasks to complete today: "
   };
   response.json(someJson);
 })
