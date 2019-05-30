@@ -19,6 +19,12 @@ app.get('/tasks', function (request, response) {
   //   {task: "Apply to tech companies", completed: false, id: uuid()}
   // ];
 
+  // const someJson = {
+  //   message: "Hello " + username + ", how are you? You have the following tasks to complete today: "
+  // };
+  // const someJson = {
+  //   tasks: "Hello " + username + ", here are your tasks: " + tasks;
+  // }
   const someJson = {
     tasks: [
       {task: "Attend TechReturners course", completed: true, id: 1}, 
@@ -29,12 +35,6 @@ app.get('/tasks', function (request, response) {
       {task: "Apply to tech companies", completed: false, id: 6}
     ]
   };
-  // const someJson = {
-  //   message: "Hello " + username + ", how are you? You have the following tasks to complete today: "
-  // };
-  // const someJson = {
-  //   tasks: "Hello " + username + ", here are your tasks: " + tasks;
-  // }
   response.json(someJson);
 })
 
