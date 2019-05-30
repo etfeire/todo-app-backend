@@ -10,17 +10,24 @@ app.get('/tasks', function (request, response) {
 
   // const todoList = request.query.tasks;
 
-  const tasks = [
-    {task: "Attend TechReturners course", completed: true, id: uuid()}, 
-    {task: "Practise!", completed: false, id: uuid()}, 
-    {task:"Do your homework", completed:false, id: uuid()}, 
-    {task:"Build final project", completed: true, id: uuid()}, 
-    {task:"Drink coffee", completed: false, id: uuid()},
-    {task: "Apply to tech companies", completed: false, id: uuid()}
-  ];
+  // const tasks = [
+  //   {task: "Attend TechReturners course", completed: true, id: uuid()}, 
+  //   {task: "Practise!", completed: false, id: uuid()}, 
+  //   {task:"Do your homework", completed:false, id: uuid()}, 
+  //   {task:"Build final project", completed: true, id: uuid()}, 
+  //   {task:"Drink coffee", completed: false, id: uuid()},
+  //   {task: "Apply to tech companies", completed: false, id: uuid()}
+  // ];
 
   const someJson = {
-    message: "Hello " + username + ", here are your tasks: " + tasks;
+    tasks = [
+      {task: "Attend TechReturners course", completed: true, id: uuid()}, 
+      {task: "Practise!", completed: false, id: uuid()}, 
+      {task:"Do your homework", completed:false, id: uuid()}, 
+      {task:"Build final project", completed: true, id: uuid()}, 
+      {task:"Drink coffee", completed: false, id: uuid()},
+      {task: "Apply to tech companies", completed: false, id: uuid()}
+    ];
   };
   // const someJson = {
   //   message: "Hello " + username + ", how are you? You have the following tasks to complete today: "
