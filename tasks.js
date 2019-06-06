@@ -4,6 +4,7 @@ const app = express();
 const cors = require('cors');
 const mysql = require('mysql');
 app.use(cors());
+app.use(express.json());
 
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -12,7 +13,7 @@ const connection = mysql.createConnection({
   database: "tasks_new_instance"
 });
 
-app.get("/tasks", function(request, response) {
+app.get("/tasks", function (request, response) {
   // const username = request.query.username;
   let queryToExecute = "SELECT * FROM Task";
   // if (username) {
@@ -36,25 +37,25 @@ app.get("/tasks", function(request, response) {
 
 // app.get('/tasks', function (request, response) {
 
-  // const username = request.query.username;
+// const username = request.query.username;
 
-  // const todoList = request.query.tasks;
+// const todoList = request.query.tasks;
 
-  // const tasks = [
-  //   {task: "Attend TechReturners course", completed: true, id: uuid()}, 
-  //   {task: "Practise!", completed: false, id: uuid()}, 
-  //   {task:"Do your homework", completed:false, id: uuid()}, 
-  //   {task:"Build final project", completed: true, id: uuid()}, 
-  //   {task:"Drink coffee", completed: false, id: uuid()},
-  //   {task: "Apply to tech companies", completed: false, id: uuid()}
-  // ];
+// const tasks = [
+//   {task: "Attend TechReturners course", completed: true, id: uuid()}, 
+//   {task: "Practise!", completed: false, id: uuid()}, 
+//   {task:"Do your homework", completed:false, id: uuid()}, 
+//   {task:"Build final project", completed: true, id: uuid()}, 
+//   {task:"Drink coffee", completed: false, id: uuid()},
+//   {task: "Apply to tech companies", completed: false, id: uuid()}
+// ];
 
-  // const someJson = {
-  //   message: "Hello " + username + ", how are you? You have the following tasks to complete today: "
-  // };
-  // const someJson = {
-  //   tasks: "Hello " + username + ", here are your tasks: " + tasks;
-  // }
+// const someJson = {
+//   message: "Hello " + username + ", how are you? You have the following tasks to complete today: "
+// };
+// const someJson = {
+//   tasks: "Hello " + username + ", here are your tasks: " + tasks;
+// }
 //   const someJson = {
 //     tasks: [
 //       {task: "Attend TechReturners course", completed: true, id: 1}, 
@@ -67,5 +68,21 @@ app.get("/tasks", function(request, response) {
 //   };
 //   response.json(someJson);
 // })
+
+app.post("/tasks", function (request, response) {
+  const taskToBeSaved = request.body;
+  connection.query('INSERT INTO Task SET ?', taskToBeSaved, function (error, results, fields) {
+    if (error) {
+      console.log("Error saving new task", error);
+      response.status(500).json({
+        error: error
+      });
+    } else {
+      response.json({
+        taskId: results.insertId
+      });
+    }
+  });
+});
 
 module.exports.handler = serverless(app);
